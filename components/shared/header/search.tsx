@@ -27,6 +27,7 @@ export default async function Search() {
             </SelectContent>
     </Select>
     <Input className='flex-1 rounded-none dark:border-gray-200 border-gray-100 text-black text-base h-full' placeholder={`Search Site ${APP_NAME}`} name="q" type="search" />
+    
     <button type="submit" className='bg-primary text-primary-foreground text-black rounded-s-none rounded-e-md h-full px-3 py-2'>
         <SearchIcon className='w-6 h-6' />
     </button>
