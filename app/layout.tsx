@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata:Metadata={
   title:{
-    template:`%s | ${APP_NAME}`,
+    template:`%s | ${APP_NAME}`, //%s ifadesi, dinamik bir başlık için yer tutucudur.Eğer %s yerine "Anasayfa" eklenirse, başlık şu şekilde olur:Anasayfa | APP_NAME
     default:`${APP_NAME}. ${APP_SLOGAN}`,
   },
   description:APP_DESCRIPTION,
