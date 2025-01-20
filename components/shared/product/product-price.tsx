@@ -40,7 +40,7 @@ const ProductPrice = ({
     <div className='space-y-2'>
       <div className='flex justify-center items-center gap-2'>
         <span className='bg-red-700 rounded-sm p-1 text-white text-sm font-semibold'>
-          {discountPercent} % Off
+          {discountPercent}% Off
         </span>
         <span className='text-red-700 text-xs font-bold'>
           Limited time deal

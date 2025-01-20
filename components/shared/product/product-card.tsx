@@ -19,6 +19,7 @@ const ProductCard = ({
   product: IProduct
   hideDetails?: boolean
   hideBorder?: boolean
+  hideAddToCart?:boolean
 }) => {
   const ProductImage = () => (
     <Link href={`/product/${product.slug}`}>
