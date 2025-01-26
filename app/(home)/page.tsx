@@ -1,3 +1,4 @@
+import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 import HomerCard from '@/components/shared/home/home-card'
 import { HomeCarousel } from '@/components/shared/home/home-carousel'
 import ProductSlider from '@/components/shared/product/product-slider'
@@ -63,7 +64,7 @@ export default async function Page() {
   const todaysDeals=await getProductByTag({tag:"todays-deal"})
   const bestSellingProducts=await getProductByTag({tag:"best-seller"})
   return (
-    <div>
+    <>
       <HomeCarousel items={data.carousels}/>
       <div className='md:p-4 md:space-y-4 bg-border'>
         <HomerCard cards={cards}/>  
@@ -83,6 +84,9 @@ export default async function Page() {
             </CardContent>
           </Card>
       </div>
-    </div>
+      <div className="p-4 bg-background">
+        <BrowsingHistoryList />
+      </div>
+    </>
   )
 }
