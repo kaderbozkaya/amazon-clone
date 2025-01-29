@@ -30,7 +30,7 @@ export default function useBrowsingHistory() {
                 category:string
             })=> {
                 const index=products.findIndex((p)=>p.id===product.id)
-                if(index !=-1) products.splice(index,1)
+                if(index !==-1) products.splice(index,1)
                     products.unshift(product)
                 if(products.length>10) products.pop()
                     browsingHistoryStore.setState({
