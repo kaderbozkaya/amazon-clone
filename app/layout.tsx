@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { APP_DESCRIPTION,APP_NAME,APP_SLOGAN } from "@/lib/constants";
+import { APP_DESCRIPTION, APP_NAME, APP_SLOGAN } from "@/lib/constants";
+import ClientProvider from "@/components/shared/client-providers";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -12,14 +13,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
-export const metadata:Metadata={
-  title:{
-    template:`%s | ${APP_NAME}`, //%s ifadesi, dinamik bir başlık için yer tutucudur.Eğer %s yerine "Anasayfa" eklenirse, başlık şu şekilde olur:Anasayfa | APP_NAME
-    default:`${APP_NAME}. ${APP_SLOGAN}`,
+export const metadata: Metadata = {
+  title: {
+    template: `%s | ${APP_NAME}`, //%s ifadesi, dinamik bir başlık için yer tutucudur.Eğer %s yerine "Anasayfa" eklenirse, başlık şu şekilde olur:Anasayfa | APP_NAME
+    default: `${APP_NAME}. ${APP_SLOGAN}`,
   },
-  description:APP_DESCRIPTION,
-}
+  description: APP_DESCRIPTION,
+};
 
 export default function RootLayout({
   children,
@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ClientProvider>{children}</ClientProvider>
       </body>
     </html>
   );
