@@ -113,3 +113,12 @@ export const UserSignInSchema=z.object({
   email:Email,
   password:Password,
 })
+
+
+export const UserSignUpSchema=UserSignInSchema.extend({ //UserSignInSchema'yi genişletiyor.
+  name:UserName,
+  confirmPassword:Password,
+}).refine((data)=>data.password===data.confirmPassword,{ //refine(), özel doğrulama fonksiyonları tanımlamak için kullanılır.Kullanıcının girdiği password ile confirmPassword eşleşiyor mu?Eğer eşleşmezse hata mesajı döndürülür.
+  message:"Passwords don't match",
+  path:['confirmPassword']
+})

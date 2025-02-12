@@ -45,3 +45,37 @@ export const toSlug = (text: string): string =>
 
     export const generateId=()=>
       Array.from({length:24},()=>Math.floor(Math.random()*10)).join('') //uzunluğu 24 olan bir dizi oluşturulur.random ile 0 ve 10 arasında rastgele bir sayı üretilir.floor ile aşağı yuvarlarız sayıyı join ile birleştirip bir string oluştururuz
+
+
+
+  
+    export const formatError = (error: any): string => { //error: any parametresi alıyor, yani herhangi bir türde hata nesnesi alabilir.Dönüş tipi string, yani hata mesajını bir string olarak döndürecek.
+      if (error.name === 'ZodError') { //gelen hatanın Zod kütüphanesinden olup olmadığını belirler.
+        const fieldErrors = Object.keys(error.errors).map((field) => {
+          const errorMessage = error.errors[field].message
+          return `${error.errors[field].path}: ${errorMessage}` 
+        })
+        return fieldErrors.join('. ')
+
+        //Eğer hata bir Mongoose ValidationError ise, her hata mesajı ayrı ayrı alınır.
+      } else if (error.name === 'ValidationError') {
+        const fieldErrors = Object.keys(error.errors).map((field) => {
+          const errorMessage = error.errors[field].message
+          return errorMessage
+        })
+        return fieldErrors.join('. ')
+        //MongoDB code: 11000, bir duplicate key (benzersiz alanın tekrar girilmesi) hatasıdır.
+      } else if (error.code === 11000) {
+        const duplicateField = Object.keys(error.keyValue)[0] //error.keyValue içinde hangi alanın tekrarlandığı bilgisi vardır.
+        return `${duplicateField} already exists`//Eğer email benzersiz (unique) olacak şekilde tanımlanmışsa ve aynı e-posta ile kayıt yapılmaya çalışılırsa bu hata döner.
+      } else {
+  //Eğer hata yukarıdaki hiçbir duruma uymuyorsa:
+//error.message bir string ise doğrudan döndürülür.
+//Değilse JSON formatında stringleştirilerek döndürülür.
+        return typeof error.message === 'string'
+          ? error.message
+          : JSON.stringify(error.message)
+      }
+    }
+
+
