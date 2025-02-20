@@ -26,7 +26,7 @@ export type Data = {
     isPublished: boolean;
   }[];
 };
-
+export type IOrderInput = z.infer<typeof OrderItemSchema>;
 export type OrderItem = z.infer<typeof OrderItemSchema>;
 export type Cart = z.infer<typeof CartSchema>;
 export type ShippingAdress = z.infer<typeof ShippingAddressSchema>;
